@@ -30,6 +30,7 @@ df = pd.read_csv('C:\\Users\\hp\\Desktop\\Coding\\AIML\\2_pandas\\zomato_dataset
 # Basic Operations in rows
 
 # Slicing Rows
+
 # iloc - Slicing based on implicit integer indices.
 print(df.iloc[0]) 
 print(df.iloc[1:4])  
@@ -42,6 +43,7 @@ print(df.iloc[1:9:3])
 
 df_explicit = df.set_index("name")
 print(df_explicit)
+
 # loc - Slicing based on explicit labels.
 print(df_explicit.loc["Jalsa"])
 print(df_explicit.loc[["Jalsa", "Tuk-Tuk"]])
@@ -51,3 +53,5 @@ print(df_explicit.reset_index())
 
 # We can drop the index altogether.
 print(df_explicit.reset_index(drop=True))
+
+print(df.info())
