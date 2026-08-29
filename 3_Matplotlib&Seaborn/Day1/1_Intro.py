@@ -89,3 +89,143 @@ print(plt.title("KDE Plot of Discounted Prices", fontsize=16))
 print(plt.xlabel("Discounted Price", fontsize=12))
 print(plt.ylabel("Density", fontsize=12))
 print(plt.show())
+
+  
+
+
+# Bivariate Plots (Two Variables)
+
+x = [1,2,3,4,5,6,7]
+y = [100,340,120,450,123,567,234]
+print(plt.plot(x,y))
+
+
+x = [1,2,3,4,5,6,7]
+y = [100,340,120,450,123,567,234]
+print(plt.scatter(x,y))
+
+
+# 1. Visualization Goal: Scatter Plot
+# How does the discounted price of Amazon products relate to their customer ratings, and are there any high-priced products with unexpectedly low ratings?
+print(plt.figure(figsize=(8, 6)))
+
+# Styling Tip 💡
+# Use alpha to handle overlapping points
+sns.scatterplot(data=df, x='discounted_price', y='rating', color='teal', alpha = 0.8)
+
+print(plt.title("Discounted Price vs. Rating", fontsize=16))
+print(plt.xlabel("Discounted Price", fontsize=12))
+print(plt.ylabel("Rating", fontsize=12))
+print(plt.show())
+
+
+print(sns.scatterplot(data=df, x='discounted_price', y='actual_price'))
+
+print(sns.scatterplot(data=df, x='discounted_price', y='actual_price', hue='category'))
+
+
+df1 = df[df['category'].isin(['Electronics','HomeImprovement'])]
+print(df1)
+
+
+plt.figure(figsize=(12, 9))
+#plt.scatter(df1['discounted_price'],df1['actual_price'])
+print(sns.scatterplot(data=df1, x='discounted_price', y='actual_price', hue="category"))
+#plt.plot([10000,20000],[40000,50000])
+
+
+# Visualization Goal: Line Plot
+
+print(df[['month_year','rating_filled']])
+
+monthly_rating = df.groupby('month_year')['rating_filled'].mean()
+print(monthly_rating)
+
+print(monthly_rating.index)
+
+print(monthly_rating.reset_index())
+
+monthly_rating = monthly_rating.reset_index()
+print(monthly_rating)
+
+print(monthly_rating.info())
+
+print(pd.to_datetime(monthly_rating['month_year'],format="%B %Y"))
+
+print(pd.to_datetime(monthly_rating['month_year']))
+
+monthly_rating['month_year'] = pd.to_datetime(monthly_rating['month_year'], format='%B %Y')
+print(monthly_rating)
+
+# Sort the DataFrame based on 'month_year.'
+monthly_rating = monthly_rating.sort_values('month_year')
+print(monthly_rating)
+
+print(monthly_rating.info())
+
+print(monthly_rating["month_year"].dt.day)
+
+print(monthly_rating['month_year'].dt.strftime('%B %Y'))
+
+# How has customer satisfaction, as measured by average product ratings, changed month by month?
+monthly_rating['month_year'] = monthly_rating['month_year'].dt.strftime('%B %Y')
+print(monthly_rating)
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Group by 'month_year' and calculate average rating
+monthly_rating = df.groupby('month_year')['rating_filled'].mean().reset_index()
+
+# Ensure 'month_year' is in datetime format
+#sept - b
+#September
+monthly_rating['month_year'] = pd.to_datetime(monthly_rating['month_year'], format='%B %Y')
+
+# Sort the DataFrame based on 'month_year.'
+monthly_rating = monthly_rating.sort_values('month_year')
+
+# Convert back to string for proper x-axis labels
+monthly_rating['month_year'] = monthly_rating['month_year'].dt.strftime('%B %Y')
+
+# Plot
+print(plt.figure(figsize=(10, 6)))
+print(plt.plot(monthly_rating['month_year'], monthly_rating['rating_filled'], marker='o', color='navy'))
+
+# Rotate the x-axis labels and add a grid
+print(plt.xticks(rotation=45))
+print(plt.grid(True, linestyle='--', alpha=0.7))
+#plt.grid(linestyle='--', alpha=0.7)
+
+print(plt.title("Average Rating by Month-Year", fontsize=16))
+print(plt.xlabel("Month-Year", fontsize=12))
+print(plt.ylabel("Average Rating", fontsize=12))
+print(plt.tight_layout())
+print(plt.show())
+
+
+
+# Group by 'month_year' and calculate average rating
+monthly_rating = df.groupby('month_year')['rating_filled'].mean().reset_index()
+
+# Ensure 'month_year' is in datetime format
+#sept - b
+#September
+monthly_rating['month_year'] = pd.to_datetime(monthly_rating['month_year'], format='%B %Y')
+
+# Sort the DataFrame based on 'month_year.'
+monthly_rating = monthly_rating.sort_values('month_year')
+
+# Convert back to string for proper x-axis labels
+monthly_rating['month_year'] = monthly_rating['month_year'].dt.strftime('%B %Y')
+
+# Plot
+print(plt.figure(figsize=(10, 6)))
+print(plt.plot(monthly_rating['month_year'], monthly_rating['rating_filled'], marker='o', color='navy'))
+
+# Rotate the x-axis labels and add a grid
+print(plt.xticks(rotation=45))
+print(plt.grid(False))
+print(plt.tight_layout())#"Please adjust margins so everything fits neatly within the figure."
