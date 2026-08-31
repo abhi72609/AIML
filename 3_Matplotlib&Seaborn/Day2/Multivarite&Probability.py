@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('C:\\Users\\hp\\Desktop\\Coding\\AIML\\3_Matplotlib&Seaborn\\amazon_data.csv')
 
 
-# # print(df.loc[df['category']=="Car&Motorbike"])
+# print(df.loc[df['category']=="Car&Motorbike"])
 
-# # print(sns.pairplot(data=df[['discounted_price', 'actual_price', 'calculated_discount_filled', 'rating_filled']]))
+# print(sns.pairplot(data=df[['discounted_price', 'actual_price', 'calculated_discount_filled', 'rating_filled']]))
 
-# # sns.pairplot(df[['rating', 'discounted_price', 'actual_price', 'calculated_discount_filled']].dropna(),
-# #              diag_kind='kde', corner=True, plot_kws={'alpha':0.5})
-# # print(plt.show())
+# sns.pairplot(df[['rating', 'discounted_price', 'actual_price', 'calculated_discount_filled']].dropna(),
+#              diag_kind='kde', corner=True, plot_kws={'alpha':0.5})
+# print(plt.show())
 
 # # Visualization Goal: Heatmap
 
@@ -104,36 +104,149 @@ df = pd.read_csv('C:\\Users\\hp\\Desktop\\Coding\\AIML\\3_Matplotlib&Seaborn\\am
 # print(plt.show())
 
 
-monthly_rating = pd.read_csv('C:\\Users\\hp\\Desktop\\Coding\\AIML\\3_Matplotlib&Seaborn\\monthly_ratings.csv')
-print(monthly_rating)
+# monthly_rating = pd.read_csv('C:\\Users\\hp\\Desktop\\Coding\\AIML\\3_Matplotlib&Seaborn\\monthly_ratings.csv')
+# print(monthly_rating)
 
-plt.figure(figsize=(16,9))
-plt.subplot(2,3,1)
-sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
-plt.xticks(rotation=90)
-plt.tight_layout()
+# # 1
+# plt.figure(figsize=(16,9))
+# plt.subplot(2,3,1)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+# plt.tight_layout()
+
+# plt.subplot(2,3,2)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,3)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,4)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,5)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,6)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# print(plt.show())
 
 
-plt.subplot(2,3,2)
-plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
-plt.xticks(rotation=90)
 
 
-plt.subplot(2,3,3)
-sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
-plt.xticks(rotation=90)
+# #2
+# plt.figure(figsize=(14,9))
+# plt.subplot(2,3,1)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
 
-plt.subplot(2,3,4)
-plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
-plt.xticks(rotation=90)
+# plt.subplot(2,3,2)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,3)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,4)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,5)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,6)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# print(plt.show())
 
 
-plt.subplot(2,3,5)
-sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
-plt.xticks(rotation=90)
 
-plt.subplot(2,3,6)
-plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
-plt.xticks(rotation=90)
 
-print(plt.show())
+# #3
+# plt.figure(figsize=(16,14))
+# plt.subplot(2,3,1)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+# plt.tight_layout()
+
+# plt.subplot(2,3,2)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,5)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(2,3,6)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+
+# print(plt.show())
+
+
+
+# #4
+# plt.figure(figsize=(16,8))
+# plt.subplot(1,2,1)
+# sns.boxplot(data=df, x='category', y='rating', palette='Set3') # Styling Tip palette
+# plt.xticks(rotation=90)
+
+# plt.subplot(1,2,2)
+# plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue')
+# plt.xticks(rotation=90)
+# print(plt.tight_layout())
+
+
+
+
+# # Stacked Plots
+
+
+# # 1. Group by price_range and rating_category, and get counts
+# grouped_stack = df.groupby(['price_range', 'rating_category'])['review_id'].count().unstack()
+
+# # 2. Plot as a stacked bar
+# grouped_stack.plot(
+#     kind='bar',
+#     stacked=True,
+#     figsize=(10, 6),
+#     colormap='Blues'
+# )
+
+# # Styling Tip
+# plt.title("Stacked Bar Plot: Rating Categories by Price Range", fontsize=16)
+# plt.xlabel("Price Range", fontsize=12)
+# plt.ylabel("Number of Reviews", fontsize=12)
+# plt.legend(title="Rating Category")
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# print(plt.show())
+
+
+
+
+# #  Probability
+import numpy as np
+
+sachin_data  = pd.read_csv("C:\\Users\\hp\\Desktop\\Coding\\AIML\\3_Matplotlib&Seaborn\\runs,NotOut,mins,bf,fours,sixes,sr,.txt")
+print(sachin_data)
+
+print(sachin_data.info())
+
+## What are all the distinct run totals Sachin Tendulkar has scored in his ODI career, and how many unique outcomes exist?
+
+# Extract unique scores from the dataset
+sample_space = sachin_data['runs'].unique()
+
+# Display the sample space
+print("Sample Space (Unique Runs):", sorted(sample_space))
+print("Number of Unique Outcomes in the Sample Space:", len(sample_space))
+
