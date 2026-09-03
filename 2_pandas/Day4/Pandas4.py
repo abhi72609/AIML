@@ -181,6 +181,5 @@ print("Data with DateTime Components Extracted:")
 print(df[['order_timestamp', 'week_number', 'day_name', 'year', 'month']].head())
 
 
-
 df['month_year'] = df['order_timestamp'].dt.strftime('%B %Y')
 print(df['month_year'])

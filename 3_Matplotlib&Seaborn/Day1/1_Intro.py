@@ -229,3 +229,58 @@ print(plt.plot(monthly_rating['month_year'], monthly_rating['rating_filled'], ma
 print(plt.xticks(rotation=45))
 print(plt.grid(False))
 print(plt.tight_layout())#"Please adjust margins so everything fits neatly within the figure."
+
+
+
+
+# Group by 'month_year' and calculate average rating
+monthly_rating = df.groupby('month_year')['rating_filled'].mean().reset_index()
+
+print(plt.figure(figsize=(10, 6)))
+print(plt.plot(monthly_rating['month_year'], monthly_rating['rating_filled'], marker='o', color='navy'))
+
+# Styling Tip
+# Rotate the x-axis labels and add a grid
+print(plt.xticks(rotation=45))
+print(plt.grid(True, linestyle='--', alpha=0.7))
+
+print(plt.title("Average Rating by Month-Year", fontsize=16))
+print(plt.xlabel("Month-Year", fontsize=12))
+print(plt.ylabel("Average Rating", fontsize=12))
+print(plt.tight_layout())
+print(plt.show())
+
+
+
+
+
+
+
+
+
+# Group by 'month_year' and calculate average rating
+monthly_rating = df.groupby('month_year')['rating_filled'].mean().reset_index()
+
+# Convert to datetime for proper sorting
+monthly_rating['month_year'] = pd.to_datetime(monthly_rating['month_year'], format='%B %Y')
+
+# Sort by month-year
+monthly_rating = monthly_rating.sort_values('month_year')
+
+# Convert back to string for x-axis labels
+monthly_rating['month_year'] = monthly_rating['month_year'].dt.strftime('%B %Y')
+
+# Bar Plot
+print(plt.figure(figsize=(10, 6)))
+print(plt.bar(monthly_rating['month_year'], monthly_rating['rating_filled'], color='skyblue'))
+
+print(plt.xticks(rotation=45))
+print(plt.grid(True, linestyle='--', alpha=0.7))
+
+print(plt.title("Average Rating by Month-Year", fontsize=16))
+print(plt.xlabel("Month-Year", fontsize=12))
+print(plt.ylabel("Average Rating", fontsize=12))
+
+print(plt.tight_layout())
+print(plt.show())
+

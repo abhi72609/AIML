@@ -78,3 +78,46 @@ P_D = len(event_D) / total_matches
 
 print(f"Marginal Probability of Sachin scoring a century: {P_C:.4f}")
 print(f"Joint Probability of scoring > 50 runs and hitting at least 1 six: {P_D:.4f}")
+
+
+
+
+# Conditional Probability
+
+## Given that Sachin Tendulkar scored more than 50 runs in an ODI match, what is the probability that he went on to score a century?
+
+# Event A: Sachin scored > 50 runs
+event_A = sachin_data[sachin_data['runs'] > 50]
+
+# Event C: Sachin scored a century
+event_C_given_A = event_A[event_A['century'] == True]
+
+# Conditional probability
+P_C_given_A = len(event_C_given_A) / len(event_A)
+
+print(f"Probability of scoring a century given runs > 50: {P_C_given_A:.4f}")
+
+
+
+
+
+
+## Given that Sachin Tendulkar batted first in an ODI match, what is the probability that he scored a century?
+
+# Define the events
+event_A = sachin_data[sachin_data['century'] == True]  # Event A: Scored a century
+event_B = sachin_data[sachin_data['Inns'] == 1]        # Event B: Batted first
+
+# Total matches
+total_matches = len(sachin_data)
+
+# Probabilities
+P_A = len(event_A) / total_matches  # Prior probability of scoring a century
+P_B = len(event_B) / total_matches  # Probability of batting first
+P_B_given_A = len(event_A[event_A['Inns'] == 1]) / len(event_A)  # Likelihood
+
+# Bayes' Theorem
+P_A_given_B = (P_B_given_A * P_A) / P_B
+
+print(f"Probability of scoring a century given Sachin batted first: {P_A_given_B:.4f}")
+
