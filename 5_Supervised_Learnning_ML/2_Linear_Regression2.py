@@ -103,3 +103,7 @@ X = df[["model"]]
 y = df["selling_price"]
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
+
+
+cData = pd.read_csv("C:\\Users\\hp\\Desktop\\Coding\\AIML\\5_Supervised_Learnning_ML\\auto-mpg.csv")
+print(cData.shape)
