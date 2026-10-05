@@ -25,3 +25,6 @@ print()
 print(cars.dtypes)
 
 print(cars['symboling'].astype('category').value_counts())
+
+
+print(cars['aspiration'].astype('category').value_counts())
