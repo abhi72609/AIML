@@ -60,9 +60,6 @@ cars_numeric = cars_numeric.drop(['symboling'], axis=1)
 cor = cars_numeric.corr()
 print(cor)
 
-from groq import Groq
-
-
 
 # price_corr = (
 #     cars.select_dtypes(include="number")
