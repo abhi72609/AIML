@@ -1,10 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 from sklearn import metrics
+import numpy as np
+
 
 # fetching data
 elec_cons = pd.read_csv(
@@ -25,7 +26,7 @@ plt.scatter(
 )
 
 print(plt.xlabel("Year"))
-print(plt.ylabel("Selling Price"))
+print(plt.ylabel("Consumption"))
 print(plt.show())
 
 
@@ -49,11 +50,129 @@ print(y_test)
 
 from sklearn.preprocessing import PolynomialFeatures
 
-PolynomialFeatures(degree=2)
-
 X = pd.DataFrame({
     "Age": [20, 30, 40],
     "Height": [160, 170, 180]
 })
 
-PolynomialFeatures(degree=2)
+print(X)
+poly = PolynomialFeatures(degree=2, include_bias=False)
+
+x_poly = poly.fit_transform(X)
+print(x_poly)
+print(poly.get_feature_names_out(X.columns))
+
+
+
+
+
+
+
+
+# Store R² scores for each polynomial degree
+r2_train = []
+r2_test = []
+
+# Polynomial degrees we want to compare
+degrees = [1, 2, 3, 10]
+
+
+# Create one figure with 3 subplots
+fig, axes = plt.subplots(1, 4, figsize=(18, 5), sharey=True)
+
+
+# Loop through each polynomial degree
+for ax, degree in zip(axes, degrees):
+
+    # Create and fit the Polynomial Regression model
+    pipeline = Pipeline([
+        ('poly_features', PolynomialFeatures(degree=degree)),
+        ('model', LinearRegression())
+    ])
+
+    # Train the model
+    pipeline.fit(X_train, y_train)
+
+    # Predictions
+    y_pred_train = pipeline.predict(X_train)
+    y_pred_test = pipeline.predict(X_test)
+
+    # Store R² scores
+    r2_train.append(
+        metrics.r2_score(y_train, y_pred_train)
+    )
+
+    r2_test.append(
+        metrics.r2_score(y_test, y_pred_test)
+    )
+
+    # Sort data for smooth curves
+    train_order = np.argsort(X_train.flatten())
+    test_order = np.argsort(X_test.flatten())
+
+    # Plot training data
+    ax.scatter(
+        X_train,
+        y_train,
+        color="blue",
+        label="Train Data"
+    )
+
+    # Plot training prediction
+    ax.plot(
+        X_train[train_order],
+        y_pred_train[train_order],
+        color="blue",
+        linewidth=2,
+        label="Train Fit"
+    )
+
+    # Plot test data
+    ax.scatter(
+        X_test,
+        y_test,
+        color="red",
+        label="Test Data"
+    )
+
+    # Plot test prediction
+    ax.plot(
+        X_test[test_order],
+        y_pred_test[test_order],
+        color="red",
+        linewidth=2,
+        label="Test Prediction"
+    )
+
+    # Graph settings
+    ax.set_title(f"Degree = {degree}")
+    ax.set_xlabel("Year")
+    ax.grid(True)
+    ax.legend()
+
+
+# Y-axis label
+axes[0].set_ylabel("Power Consumption")
+
+# Adjust spacing
+plt.tight_layout()
+
+# Display graphs
+plt.show()
+
+
+# Print R² scores
+for degree, train_score, test_score in zip(
+    degrees, r2_train, r2_test
+):
+    print(
+        f"Degree {degree}: "
+        f"Train R² = {train_score:.3f}, "
+        f"Test R² = {test_score:.3f}"
+    )
+
+
+
+
+#   BIAS - VARIANCE
+

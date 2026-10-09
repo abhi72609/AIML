@@ -107,3 +107,6 @@ vif['VIF'] = [variance_inflation_factor(X_t.values, i) for i in range(X_t.shape[
 vif = vif.sort_values(by = "VIF", ascending = False)
 vif['VIF'] = round(vif['VIF'], 2)
 print(vif)
+
+
+
